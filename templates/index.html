@@ -163,8 +163,11 @@
                         <div class="performance-context">
                             <p><small>
                                 <i class="fas fa-lightbulb"></i> 
-                                <strong>Industry Context</strong>: 55-65% accuracy is considered good for financial prediction models. 
-                                Our model aims to beat this benchmark through Wikipedia sentiment analysis.
+                                <strong>Industry Context</strong>:
+                                <span id="performanceContext">
+                                    Our model achieves <strong id="improvementOverRandom">+2.6%</strong> over random guessing (50%).                                                                               Financial prediction models are considered good at 55-65% accuracy. 
+                                                We analyze <strong id="trainingDays">4,082</strong> days of historical data.
+                                </span>
                             </small></p>
                         </div>
                         
@@ -174,23 +177,24 @@
 
                         <!-- Performance Details -->
                         <div class="performance-details">
-                            <h4><i class="fas fa-chart-line"></i> Performance Details</h4>
+                            <h4><i class="fas fa-chart-line"></i> Model Performance Analysis</h4>
                             <div class="performance-grid">
                                 <div>
                                     <strong>Performance Grade:</strong> 
-                                    <span id="performanceGrade" class="grade-b">B</span>
+                                    <span id="performanceGrade" class="grade-c">C</span>
+                                    <small id="performanceQuality">(Moderate)</small>
                                 </div>
                                 <div>
-                                    <strong>Recent Trend:</strong> 
-                                    <span id="performanceTrend">stable</span>
+                                    <strong>Improvement vs Random:</strong> 
+                                    <span id="improvementScore" class="positive">+2.6%</span>
                                 </div>
                                 <div>
-                                    <strong>Confidence Quality:</strong> 
-                                    <span id="confidenceQuality">good</span>
+                                    <strong>Model Type:</strong> 
+                                    <span>XGBoost + Wikipedia Sentiment</span>
                                 </div>
                                 <div>
-                                    <strong>Prediction Volume:</strong> 
-                                    <span id="predictionVolume">0</span>
+                                    <strong>Last Training:</strong> 
+                                    <span id="lastTrainingDate">2025-11-20</span>
                                 </div>
                             </div>
                         </div>

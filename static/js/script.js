@@ -824,27 +824,53 @@ async function loadPerformanceData() {
 }
 
 // Update performance context information
+// Enhanced performance context update
 function updatePerformanceContext(performance) {
-    const performanceElements = {
-        grade: document.getElementById('performanceGrade'),
-        trend: document.getElementById('performanceTrend'),
-        quality: document.getElementById('confidenceQuality')
-    };
+    const contextElement = document.getElementById('performanceContext');
+    const improvementElement = document.getElementById('improvementOverRandom');
+    const trainingElement = document.getElementById('trainingDays');
+    const gradeElement = document.getElementById('performanceGrade');
+    const qualityElement = document.getElementById('performanceQuality');
+    const improvementScoreElement = document.getElementById('improvementScore');
+    const trainingDataElement = document.getElementById('trainingDataPoints');
+    const lastTrainingElement = document.getElementById('lastTrainingDate');
     
-    if (performanceElements.grade) {
-        performanceElements.grade.textContent = performance.performance_grade;
-        performanceElements.grade.className = `grade-${performance.performance_grade.toLowerCase()}`;
+    if (contextElement && performance.performance_context) {
+        const ctx = performance.performance_context;
+        contextElement.innerHTML = `
+            Our model achieves <strong>${ctx.improvement_over_random}</strong> over random guessing (50%). 
+            Financial prediction models are considered good at ${ctx.industry_benchmark} accuracy. 
+            We analyze <strong>${ctx.training_period}</strong> of historical data.
+        `;
     }
     
-    if (performanceElements.trend) {
-        const trendIcon = performance.recent_trend === 'improving' ? '📈' : 
-                        performance.recent_trend === 'declining' ? '📉' : '➡️';
-        performanceElements.trend.innerHTML = `${trendIcon} ${performance.recent_trend}`;
+    if (improvementElement && performance.precision) {
+        const improvement = (performance.precision - 50).toFixed(1);
+        improvementElement.textContent = `+${improvement}%`;
+        if (improvementScoreElement) {
+            improvementScoreElement.textContent = `+${improvement}%`;
+            improvementScoreElement.className = improvement >= 3 ? 'positive' : 'neutral';
+        }
     }
     
-    if (performanceElements.quality) {
-        performanceElements.quality.textContent = performance.confidence_quality;
-        performanceElements.quality.className = `quality-${performance.confidence_quality.toLowerCase()}`;
+    if (trainingElement && performance.backtest_samples) {
+        trainingElement.textContent = performance.backtest_samples;
+        if (trainingDataElement) {
+            trainingDataElement.textContent = `${performance.backtest_samples} days`;
+        }
+    }
+    
+    if (gradeElement && performance.performance_grade) {
+        gradeElement.textContent = performance.performance_grade;
+        gradeElement.className = `grade-${performance.performance_grade.toLowerCase()}`;
+    }
+    
+    if (qualityElement && performance.performance_quality) {
+        qualityElement.textContent = `(${performance.performance_quality})`;
+    }
+    
+    if (lastTrainingElement && performance.model_training_date) {
+        lastTrainingElement.textContent = performance.model_training_date.split('T')[0];
     }
 }
 
