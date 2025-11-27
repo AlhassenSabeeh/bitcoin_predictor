@@ -99,7 +99,7 @@ if __name__ == "__main__":
         exit(1)
     
     # Update Wikipedia data
-    #wiki_data = update_wikipedia_data()
+    wiki_data = update_wikipedia_data()
     #wiki_data = pd.DataFrame("wikipedia_edits.csv")
     
     # Small delay to ensure file writing is complete
